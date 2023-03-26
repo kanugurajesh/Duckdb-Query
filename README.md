@@ -8,9 +8,11 @@ This project is used to query the database using json and duckdb.
 
 complete_database_project/  
 │  
-├── firebase_database/    
+|-- firebase_database/    
 │  
-|── localhost_database/  
+|-- localhost_database/   
+|  
+|-- localhost_docker/  
 
 ## Project Structure Explanation
 
@@ -86,6 +88,8 @@ firebase_database/
 
 7. firestore_write.py reads the csv files in the datasets folder and adds the data to the firebase database  
   
+### Setting Up The Project
+
 #### Prerequisites
 
 You need a python environment with all the modules in the requirements.txt file installed in your system to run the project.The project is developed in linux operating system.Below are the steps to install the project in linux
@@ -113,6 +117,55 @@ you can deploy the container on any cloudplatform which supports docker
 6. pandas
 7. requests
 8. firebase-admin
+9. Docker
+
+### localhost_docker
+
+The localhost_docker is similar to localhost_database but this database can be dockerized using the dockerfile in the folder
+
+localhost_docker/  
+├── app/  
+│    ├── data_converter.py  
+│    ├── main.py  
+├── datasets/  
+├── example.json   
+├── vision.py  
+└── requirements.txt  
+
+1.data_converter.py creates a sqlite3 database in the docker container
+
+2.main.py creates api using restapi
+
+### Setting Up The Project
+
+#### Prerequisites 
+1. This project is build in linux operating system,docker should be installed in your machine
+2. python is optional if you want to send requests to the docker container
+
+#### Installation
+
+1. Navigate to localhost_docker folder
+2. Now build the docker image by running <code> docker build -t image_name .</code> in the terminal
+3. Now run the docker container by running <code>docker run -d --name uh -p 80:80 -v /path/to/local/datasets:/datasets image_name
+</code> in the terminal
+
+###### --name uh - This sets the name of the container to "uh." You can choose any name you like as long as it's not already taken by another container.
+######  -p 80:80 - This maps port 80 on the container to port 80 on the host machine. This means that if you have a web server running in the container on port 80, you can access it by going to http://localhost in your web browser.
+###### -v /path/to/local/datasets:/datasets flag mounts the host's directory "/path/to/local/datasets" to the container's "/datasets" directory, allowing the container to access data from the host.
+###### image_name is the name of the Docker image to be used to create the container.
+
+#### Usages
+
+1.You can send request to the container using vision.py
+
+#### Built With
+1. python
+2. JSON
+3. Fastapi
+4. duckdb
+5. sqlite3
+6. pandas
+7. requests
 9. Docker
 
 ## Houseware
@@ -201,5 +254,4 @@ Students are expected to use the [GitHub Flow](https://docs.github.com/en/get-st
 3. The PR created called Feedback will be used for sharing any feedback/asking questions by the reviewers, please make sure you do not close the Feedback PR.
 4. The assignment will be automatically submitted on the "Assignment Deadline" date -- you don't need to do anything apart from what is mentioned above.
 5. Using GitHub Issues to ask any relevant questions regarding the project
-
 

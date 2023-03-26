@@ -1,0 +1,27 @@
+[
+    {
+        "query_fields":["user_id","name","age","gender","location","signup_date","subscription_plan","device_type","event_name","timestamp"],
+        "operator":["BETWEEN",">","<","=","!="]
+    }
+    ,
+    {
+        "fields": {
+            "age":{
+                "operator":"!=",
+                "value":18
+            },
+            "gender":{
+                "operator":"=",
+                "value":"Male"
+            },
+            "location":{
+                "operator":"!=",
+                "value":"India"
+            },
+            "timestamp":{
+                "operator":"BETWEEN",
+                "value":["2016/04/01 20:48:48","2017/01/14 04:27:59"]
+            }
+        }
+    }
+]
